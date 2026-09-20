@@ -49,8 +49,9 @@
      </div>
      Panels live anywhere on the page, keyed by id.
    * --------------------------------------------------------------------- */
-  function initTabs() {
-    var groups = document.querySelectorAll('[data-tabs]');
+  function initTabs(root) {
+    root = root || document;
+    var groups = root.querySelectorAll('[data-tabs]');
     Array.prototype.forEach.call(groups, function (group) {
       var tabs = group.querySelectorAll('[role="tab"]');
 
@@ -149,9 +150,16 @@
     });
   }
 
-  /* --- case-study table of contents scrollspy -------------------------- */
-  function initToc() {
-    var toc = document.querySelector('.cs-toc');
+  /* --- case-study table of contents scrollspy -------------------------- *
+     root: element to search for .cs-toc/sections in (default document).
+     scrollEl: element whose scroll drives the sync (default window) — pass
+     the modal body when the TOC is scrolling inside a nested container
+     rather than the page itself.
+   * --------------------------------------------------------------------- */
+  function initToc(root, scrollEl) {
+    root = root || document;
+    scrollEl = scrollEl || window;
+    var toc = root.querySelector('.cs-toc');
     if (!toc) return;
     var links = Array.prototype.slice.call(toc.querySelectorAll('a[href^="#"]'));
     var sections = links
@@ -170,8 +178,24 @@
       links.forEach(function (a, i) { a.classList.toggle('is-active', i === best); });
     }
 
+    var isNestedScroll = scrollEl !== window;
+    links.forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var id = a.getAttribute('href').slice(1);
+        var target = document.getElementById(id);
+        if (!target) return;
+        e.preventDefault();
+        if (isNestedScroll) {
+          target.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        } else {
+          history.pushState(null, '', '#' + id);
+          target.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        }
+      });
+    });
+
     var ticking = false;
-    window.addEventListener('scroll', function () {
+    scrollEl.addEventListener('scroll', function () {
       if (ticking) return;
       ticking = true;
       window.requestAnimationFrame(function () { sync(); ticking = false; });
@@ -180,8 +204,9 @@
   }
 
   /* --- count-up stats -------------------------------------------------- */
-  function initCounters() {
-    var nodes = document.querySelectorAll('[data-count-to]');
+  function initCounters(root) {
+    root = root || document;
+    var nodes = root.querySelectorAll('[data-count-to]');
     if (!nodes.length) return;
 
     function run(el) {
@@ -210,6 +235,101 @@
     Array.prototype.forEach.call(nodes, function (n) { io.observe(n); });
   }
 
+  /* --- project case-study modal -----------------------------------------
+     Case-study links (project cards, "Read the case study" links) open
+     their target page's .cs content (toc + sections) in an in-page window
+     instead of navigating away, matching the original design's modal.
+     The standalone pages under projects/ still work as real, linkable
+     pages on their own — this just intercepts clicks on them.
+   * --------------------------------------------------------------------- */
+  function initProjectModal() {
+    if (!('fetch' in window) || !('DOMParser' in window)) return;
+
+    var modal, windowEl, bodyEl, labelEl;
+    var lastFocus = null;
+    var openToken = 0;
+
+    function build() {
+      if (modal) return;
+      modal = document.createElement('div');
+      modal.className = 'proj-modal';
+      modal.hidden = true;
+      modal.innerHTML =
+        '<div class="proj-modal__window" tabindex="-1" role="dialog" aria-modal="true">' +
+          '<div class="proj-modal__header">' +
+            '<button type="button" class="proj-modal__icon-btn" data-proj-close aria-label="Close">⌂</button>' +
+            '<div class="proj-modal__label"></div>' +
+            '<button type="button" class="proj-modal__icon-btn" data-proj-expand aria-label="Expand">⤢</button>' +
+          '</div>' +
+          '<div class="proj-modal__body"></div>' +
+        '</div>';
+      document.body.appendChild(modal);
+      windowEl = modal.querySelector('.proj-modal__window');
+      bodyEl = modal.querySelector('.proj-modal__body');
+      labelEl = modal.querySelector('.proj-modal__label');
+
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) close();
+      });
+      modal.querySelector('[data-proj-close]').addEventListener('click', close);
+      modal.querySelector('[data-proj-expand]').addEventListener('click', function () {
+        windowEl.classList.toggle('is-expanded');
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal && !modal.hidden) close();
+      });
+    }
+
+    function close() {
+      if (!modal || modal.hidden) return;
+      modal.hidden = true;
+      document.documentElement.classList.remove('proj-modal-open');
+      windowEl.classList.remove('is-expanded');
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    function open(url, triggerEl) {
+      build();
+      var token = ++openToken;
+      lastFocus = triggerEl || null;
+      modal.hidden = false;
+      document.documentElement.classList.add('proj-modal-open');
+      bodyEl.innerHTML = '<div class="proj-modal__loading">Loading…</div>';
+      labelEl.textContent = '';
+      windowEl.focus();
+
+      fetch(url).then(function (res) {
+        if (!res.ok) throw new Error('fetch failed: ' + res.status);
+        return res.text();
+      }).then(function (html) {
+        if (token !== openToken) return; // a newer open() superseded this one
+        html = html.replace(/\.\.\/assets\//g, 'assets/');
+        var doc = new DOMParser().parseFromString(html, 'text/html');
+        var cs = doc.querySelector('.cs');
+        if (!cs) throw new Error('no .cs content in ' + url);
+        var title = doc.querySelector('.cs-title');
+        labelEl.textContent = title ? 'case study · ' + title.textContent : '';
+        bodyEl.innerHTML = '';
+        bodyEl.appendChild(cs);
+        bodyEl.scrollTop = 0;
+        initToc(bodyEl, bodyEl);
+        initTabs(bodyEl);
+        initCounters(bodyEl);
+      }).catch(function () {
+        if (token !== openToken) return;
+        bodyEl.innerHTML = '<div class="proj-modal__loading">Couldn’t load this case study. <a href="' + url + '">Open it directly →</a></div>';
+      });
+    }
+
+    document.addEventListener('click', function (e) {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest('a[href*="projects/"][href$=".html"]');
+      if (!a || e.defaultPrevented) return;
+      e.preventDefault();
+      open(a.href, a);
+    });
+  }
+
   /* --- boot ------------------------------------------------------------ */
   function boot() {
     initClock();
@@ -219,6 +339,7 @@
     initAma();
     initToc();
     initCounters();
+    initProjectModal();
   }
 
   if (document.readyState === 'loading') {
