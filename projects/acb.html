@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Austin Capital Bank — Mariam Jalloh</title>
+<meta name="description" content="Three fintech redesigns at Austin Capital Bank: plan comparison, Refer a Friend, and Past Due Defender — all grounded in customer support call research.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=IM+Fell+Double+Pica:ital@0;1&family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="corner-dots" aria-hidden="true"></div>
+
+<main class="page wrap-wide page-head">
+
+  <a class="back-link" href="../index.html#work">← back to work</a>
+
+  <div class="cs">
+
+    <nav class="cs-toc" aria-label="Sections">
+      <a href="#overview"><span class="dot"></span>Overview</a>
+      <a href="#plan-comparison"><span class="dot"></span>Plan Comparison</a>
+      <a href="#refer-a-friend"><span class="dot"></span>Refer a Friend</a>
+      <a href="#past-due-defender"><span class="dot"></span>Past Due Defender</a>
+    </nav>
+
+    <div class="cs-main">
+
+      <section class="cs-section cs-section--overview" id="overview">
+        <p class="eyebrow">case study · in progress</p>
+        <div class="cs-cover">
+          <img src="../assets/acb-logo-full.jpg" alt="Austin Capital Bank">
+        </div>
+        <p class="kicker">Fintech Product Design Intern · Austin Capital Bank</p>
+        <h1 class="cs-title">Austin Capital Bank</h1>
+        <p class="cs-sub">designing trust</p>
+
+        <div class="note-card note-card--quiet" style="max-width:520px;">Screens are confidential while this work is still under review — happy to walk through them live. Reach me at <a href="mailto:mariam.jalloh@utexas.edu" style="text-decoration:underline;">mariam.jalloh@utexas.edu</a>.</div>
+
+        <dl class="cs-facts">
+          <div><dt>Role</dt><dd>Fintech product design</dd></div>
+          <div><dt>Timeline</dt><dd>Jun 2026 – Present</dd></div>
+        </dl>
+
+        <p class="body-text" style="max-width:520px;">As a fintech product design intern, I worked across three redesigns: the plan comparison page, the Refer a Friend program, and Past Due Defender, a credit safeguard feature. Every project started from the same source of truth — listening to customer support calls to hear what was actually confusing people, alongside competitor research into how other fintechs solved the same problem.</p>
+        <p class="body-text" style="max-width:520px;">Every Thursday, the design team held a "lunch and listen": we'd bring our lunches to a conference room and listen through recent customer service calls together. That's where Past Due Defender came from — it kept coming up as a source of confusion.</p>
+        <p class="body-text" style="max-width:520px;">My workflow ran from ticket to handoff: research, a rough draft in Figma, then rapid back-and-forth in Claude Design to prototype and iterate before reviewing with my manager and coworkers and handing the final design to dev.</p>
+
+        <div class="card-row">
+          <div class="num-card num-card--sage">
+            <div class="num-card__title">Research: support calls &amp; competitors</div>
+            <div class="num-card__num" style="font-size:32px;">1</div>
+          </div>
+          <div class="num-card num-card--stone">
+            <div class="num-card__title">Rough draft in Figma</div>
+            <div class="num-card__num" style="font-size:32px;">2</div>
+          </div>
+          <div class="num-card num-card--rose">
+            <div class="num-card__title">Prototype &amp; iterate in Claude Design</div>
+            <div class="num-card__num" style="font-size:32px;">3</div>
+          </div>
+          <div class="num-card num-card--sage">
+            <div class="num-card__title">Review with manager &amp; coworkers</div>
+            <div class="num-card__num" style="font-size:32px;">4</div>
+          </div>
+          <div class="num-card num-card--stone">
+            <div class="num-card__title">Handoff to dev</div>
+            <div class="num-card__num" style="font-size:32px;">5</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cs-section" id="plan-comparison">
+        <p class="eyebrow">plan comparison</p>
+        <h2 class="h-serif-s">Card vs. table: a split decision</h2>
+        <p class="body-text" style="max-width:560px;">I worked with a full-time product designer on the onboarding flow for Credit Strong, one of Austin Capital Bank's products. We were trying to make it easier for potential customers to compare plans while onboarding, and landed on two candidates: a card view showing each plan's details on its own card, and a table view for comparing features and plans side by side.</p>
+        <p class="body-text" style="max-width:560px;">We tested both on the other interns, a good user base since they weren't familiar enough with the credit-building product to bring bias. We expected the card view to win — it looked more appealing, and one person even said it reminded them of Apple's UI and felt trustworthy for it. But interns with more technical backgrounds — finance, data science, machine learning — tended to prefer the table, since they wanted everything visible in one view.</p>
+        <p class="body-text" style="max-width:560px;">The result was a genuine split, so we combined both: a card view up top, with a dropdown below that reveals the full comparison table. I ran half the intern sessions and the product designer ran the other half; each session had users navigate the current live plan comparison page first, then the prototype, so we could collect their insights on both directly.</p>
+      </section>
+
+      <section class="cs-section" id="refer-a-friend">
+        <p class="eyebrow">refer a friend</p>
+        <h2 class="h-serif-s">One clear action instead of four boxes</h2>
+        <p class="body-text" style="max-width:560px;">The previous Refer a Friend page laid out four bento-style boxes explaining the program, but nothing told customers where to focus — and the whole point of the page is getting them to copy and share their link.</p>
+        <p class="body-text" style="max-width:560px;">My redesign led with a single hero: an illustration of a figure with a gift box, a "get $10" style headline, and a short explanation of how the program works. On mobile, the copy-link and share buttons are visible without scrolling, and copying the link now shows a confirmation. A learn more button reveals the full steps and requirements for anyone who wants the details.</p>
+      </section>
+
+      <section class="cs-section" id="past-due-defender">
+        <p class="eyebrow">past due defender</p>
+        <h2 class="h-serif-s">A safeguard that needs to look like one</h2>
+        <p class="body-text" style="max-width:560px;">This came directly out of the customer support call research: it was one of the most common complaints we heard, so it was clear the redesign was addressing a real problem.</p>
+        <p class="body-text" style="max-width:560px;">Past Due Defender is meant to cover a missed payment automatically, but whether it actually kicks in depends on two things: having enough money in savings for it to draw from, and, for some account types, staying under a limit of three uses in a row. After the third use, the customer has to make a manual payment or it gets reported to the credit bureaus as late — the opposite of a bank whose mission is helping people build credit.</p>
+        <p class="body-text" style="max-width:560px;">The portal previously just showed "active," regardless of any of that. Customers often didn't realize they'd hit their limit, or that they lacked the savings balance for it to work, until it had already hurt them. My redesign focused on clearly communicating Past Due Defender's real status — whether it would actually cover the next missed payment — instead of a single static label.</p>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-left">
+    <div class="footer-clock">
+      <svg data-clock-sun width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <line x1="12" y1="1.5" x2="12" y2="4.5"></line>
+        <line x1="12" y1="19.5" x2="12" y2="22.5"></line>
+        <line x1="1.5" y1="12" x2="4.5" y2="12"></line>
+        <line x1="19.5" y1="12" x2="22.5" y2="12"></line>
+        <line x1="4.5" y1="4.5" x2="6.6" y2="6.6"></line>
+        <line x1="17.4" y1="17.4" x2="19.5" y2="19.5"></line>
+        <line x1="4.5" y1="19.5" x2="6.6" y2="17.4"></line>
+        <line x1="17.4" y1="6.6" x2="19.5" y2="4.5"></line>
+      </svg>
+      <svg data-clock-moon hidden width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"></path>
+      </svg>
+      <span data-clock></span>
+      <span>Austin, TX</span>
+    </div>
+    <div>Made with ♥.</div>
+  </div>
+  <div class="footer-right">
+    <div class="footer-cta">Let's work together!</div>
+    <a href="mailto:mariam.jalloh@utexas.edu" style="font-size:15px;">mariam.jalloh@utexas.edu</a>
+    <div class="footer-links">
+      <a href="https://linkedin.com">LinkedIn</a>
+      <a href="../assets/Mariam_Jalloh_Resume.docx" download>Résumé</a>
+    </div>
+  </div>
+</footer>
+
+<nav class="dock" aria-label="Primary">
+  <div class="dock__bar">
+    <a class="dock__item" href="../index.html#work" aria-current="page">
+      <span class="dock__icon dock__icon--work"><img src="../assets/dock-work.png" alt=""></span>
+      <span class="dock__label">Work</span>
+    </a>
+    <a class="dock__item" href="../resume.html">
+      <span class="dock__icon dock__icon--resume"><img src="../assets/dock-resume.png" alt=""></span>
+      <span class="dock__label">Resume</span>
+    </a>
+    <a class="dock__item" href="../about.html">
+      <span class="dock__icon dock__icon--about"><img src="../assets/dock-about.png" alt=""></span>
+      <span class="dock__label">About</span>
+    </a>
+  </div>
+</nav>
+
+<script src="../script.js"></script>
+</body>
+</html>

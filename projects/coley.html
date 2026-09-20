@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coley GCS — Mariam Jalloh</title>
+<meta name="description" content="Coley GCS: turning a manual GSA proposal spreadsheet into guided forms and a client-facing dashboard.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=IM+Fell+Double+Pica:ital@0;1&family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="corner-dots" aria-hidden="true"></div>
+
+<main class="page wrap-wide page-head">
+
+  <a class="back-link" href="../index.html#work">← back to work</a>
+
+  <div class="cs">
+
+    <nav class="cs-toc" aria-label="Sections">
+      <a href="#overview"><span class="dot"></span>Overview</a>
+      <a href="#context"><span class="dot"></span>Context</a>
+      <a href="#problem"><span class="dot"></span>The Problem</a>
+      <a href="#vision"><span class="dot"></span>Vision &amp; Priorities</a>
+      <a href="#technical-form"><span class="dot"></span>Technical Form</a>
+      <a href="#dashboard"><span class="dot"></span>Dashboard</a>
+      <a href="#takeaways"><span class="dot"></span>Takeaways</a>
+    </nav>
+
+    <div class="cs-main">
+
+      <section class="cs-section cs-section--overview" id="overview">
+        <p class="eyebrow">case study</p>
+        <div class="cs-cover">
+          <img src="../assets/coley-cover.jpg" alt="Coley GCS">
+        </div>
+        <p class="kicker">Service Platform</p>
+        <h1 class="cs-title">Coley GCS</h1>
+        <p class="cs-sub">streamlined business</p>
+        <dl class="cs-facts">
+          <div><dt>Role</dt><dd>co-UX designer</dd></div>
+          <div><dt>Timeline</dt><dd>Jan – May 2025</dd></div>
+          <div><dt>Organization</dt><dd>UT Austin's Texas Convergent</dd></div>
+        </dl>
+      </section>
+
+      <section class="cs-section" id="context">
+        <p class="eyebrow">context</p>
+        <p class="body-text">As part of a Forge Team, I served as the designer, working with engineering and business students to help a local business automate their manual workflow and better serve their clients in GSA proposal process for businesses applying to sell through federal contracts.</p>
+      </section>
+
+      <section class="cs-section" id="problem">
+        <p class="eyebrow">the problem</p>
+        <p class="body-text">Businesses applying for the GSA Schedule face a confusing, time-intensive proposal process that can take months to complete. The workflow involves repetitive document submission, manual tracking, and limited visibility into progress, which makes the process costly, error-prone, and frustrating for both clients and consultants.</p>
+        <h2 class="h-serif-s">How might we simplify the GSA proposal process so clients can easily track their progress and know their next steps?</h2>
+      </section>
+
+      <section class="cs-section cs-section--wide" id="vision">
+        <p class="eyebrow">vision &amp; priorities</p>
+        <h2 class="h-serif-s">From spreadsheet to system</h2>
+        <div class="note-card">Took a company-provided GSA process spreadsheet and converted it into form layouts and dashboard features for clients to complete and track their submissions.</div>
+
+        <div class="shot-row">
+          <div class="shot">
+            <p class="eyebrow-up" style="margin:0;">1· spreadsheet</p>
+            <div class="shot__frame"><img src="../assets/coley-1-spreadsheet.png" alt="The company-provided GSA process spreadsheet"></div>
+          </div>
+          <div class="shot">
+            <p class="eyebrow-up" style="margin:0;">2· content spec</p>
+            <div class="shot__frame"><img src="../assets/coley-2-content-spec.png" alt="Content specification derived from the spreadsheet"></div>
+          </div>
+          <div class="shot">
+            <p class="eyebrow-up" style="margin:0;">3· form design</p>
+            <div class="shot__frame"><img src="../assets/coley-3-form-design.png" alt="Form design"></div>
+          </div>
+          <div class="shot">
+            <p class="eyebrow-up" style="margin:0;">4· dashboard wireframe</p>
+            <div class="shot__frame"><img src="../assets/coley-4-dashboard-wireframe.png" alt="Dashboard wireframe"></div>
+          </div>
+        </div>
+
+        <div class="priority-row">
+          <div class="priority priority--p0">
+            <div class="priority__level">1 · Vision</div>
+            <div class="priority__item">· Design a guided, minimal form experience that reduces cognitive load and helps clients move through complex proposal sections with confidence.</div>
+            <div class="priority__item">· Provide clear progress awareness so users always know where they are in the process and how much remains.</div>
+            <div class="priority__item">· Create a dashboard that offers at-a-glance status, highlights next steps, and surfaces important messages from Coley to keep clients on track and supported.</div>
+          </div>
+          <div class="priority priority--p1">
+            <div class="priority__level">2 · Priorities</div>
+            <div class="priority__item">· Make “if-this-then-that” paths of compliance requirements intuitive, so clients know exactly how and when to upload documents or complete tasks.</div>
+            <div class="priority__item">· Minimize reliance on emails and manual tracking by integrating notifications and feedback directly into the platform.</div>
+            <div class="priority__item">· Prioritize features that help users prefill, review, and finalize proposals seamlessly.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cs-section" id="technical-form">
+        <p class="eyebrow">technical form</p>
+        <h2 class="h-serif-s">A collapsible progress bar</h2>
+        <p class="body-text">Designed 6 pages for the technical section, including text fields, upload, radio buttons, and redirects.</p>
+        <p class="body-text">After receiving feedback that the original progress bar did not clearly show where users were in the process and would not scale easily across varying screen counts, my team and I redesigned it into a collapsible progress bar with subsection titles for clearer navigation.</p>
+
+        <div class="shot-row">
+          <div class="shot shot--wide">
+            <p class="eyebrow-up" style="margin:0;">before</p>
+            <div class="shot__frame"><img src="../assets/coley-progress-before.png" alt="The original progress bar"></div>
+          </div>
+          <div class="shot shot--wide">
+            <p class="eyebrow-up" style="margin:0;">after</p>
+            <div class="shot__frame"><img src="../assets/coley-progress-after-1.png" alt="The redesigned collapsible progress bar, collapsed"></div>
+            <div class="shot__frame"><img src="../assets/coley-progress-after-2.png" alt="The redesigned collapsible progress bar, expanded"></div>
+          </div>
+        </div>
+
+        <div style="width:100%;max-width:560px;border-radius:10px;border:1px solid #eee3d6;background:#fff;overflow:hidden;margin-top:10px;">
+          <img src="../assets/coley-technical-form.gif" alt="Walkthrough of the technical form" style="width:100%;display:block;">
+        </div>
+      </section>
+
+      <section class="cs-section" id="dashboard">
+        <p class="eyebrow">dashboard</p>
+        <h2 class="h-serif-s">At-a-glance status</h2>
+        <p class="body-text">Provided users with multiple entry points into the form so they could jump directly to the section they needed without navigating through the entire process.</p>
+        <p class="body-text">Used icons to help users quickly recognize form sections and an alert indicator to draw attention to edits that require action.</p>
+        <p class="body-text">Added a visual progress indicator to show how close users are to completing the full form and encourage continued progress.</p>
+        <p class="body-text">Included a To-Do section that lists required edits, reminds users where they left off, and links them directly to the relevant sections.</p>
+
+        <div class="shot-row">
+          <div class="shot shot--wide">
+            <div class="shot__frame shot__frame--crop"><img src="../assets/coley-dashboard-1.png" alt="Client dashboard"></div>
+          </div>
+          <div class="shot shot--wide">
+            <div class="shot__frame shot__frame--crop"><img src="../assets/coley-dashboard-2.png" alt="Client dashboard, to-do section"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cs-section" id="takeaways">
+        <p class="eyebrow">takeaways</p>
+        <h2 class="h-serif-s">What I walked away with</h2>
+        <div class="bullet-list">
+          <div>· Learned to simplify complex concepts: constantly asked, “How can I make this process understandable for someone unfamiliar with the GSA system?”</div>
+          <div>· Working directly with a client for the first time, I learned to anticipate their needs while staying realistic about what we could deliver.</div>
+          <div>· Realized that extensive upfront research is essential to even begin designing for a complex system like the GSA proposal process.</div>
+          <div>· Emphasized consistency in design so users could navigate different sections without confusion, using Figma components to create a uniform experience.</div>
+        </div>
+        <div style="margin-top:14px;">
+          <p class="eyebrow-up" style="margin-bottom:10px;">Tools</p>
+          <div class="tool-pills">
+            <span class="tool-pill">Figma</span>
+            <span class="tool-pill">SharePoint</span>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-left">
+    <div class="footer-clock">
+      <svg data-clock-sun width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <line x1="12" y1="1.5" x2="12" y2="4.5"></line>
+        <line x1="12" y1="19.5" x2="12" y2="22.5"></line>
+        <line x1="1.5" y1="12" x2="4.5" y2="12"></line>
+        <line x1="19.5" y1="12" x2="22.5" y2="12"></line>
+        <line x1="4.5" y1="4.5" x2="6.6" y2="6.6"></line>
+        <line x1="17.4" y1="17.4" x2="19.5" y2="19.5"></line>
+        <line x1="4.5" y1="19.5" x2="6.6" y2="17.4"></line>
+        <line x1="17.4" y1="6.6" x2="19.5" y2="4.5"></line>
+      </svg>
+      <svg data-clock-moon hidden width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"></path>
+      </svg>
+      <span data-clock></span>
+      <span>Austin, TX</span>
+    </div>
+    <div>Made with ♥.</div>
+  </div>
+  <div class="footer-right">
+    <div class="footer-cta">Let's work together!</div>
+    <a href="mailto:mariam.jalloh@utexas.edu" style="font-size:15px;">mariam.jalloh@utexas.edu</a>
+    <div class="footer-links">
+      <a href="https://linkedin.com">LinkedIn</a>
+      <a href="../assets/Mariam_Jalloh_Resume.docx" download>Résumé</a>
+    </div>
+  </div>
+</footer>
+
+<nav class="dock" aria-label="Primary">
+  <div class="dock__bar">
+    <a class="dock__item" href="../index.html#work" aria-current="page">
+      <span class="dock__icon dock__icon--work"><img src="../assets/dock-work.png" alt=""></span>
+      <span class="dock__label">Work</span>
+    </a>
+    <a class="dock__item" href="../resume.html">
+      <span class="dock__icon dock__icon--resume"><img src="../assets/dock-resume.png" alt=""></span>
+      <span class="dock__label">Resume</span>
+    </a>
+    <a class="dock__item" href="../about.html">
+      <span class="dock__icon dock__icon--about"><img src="../assets/dock-about.png" alt=""></span>
+      <span class="dock__label">About</span>
+    </a>
+  </div>
+</nav>
+
+<script src="../script.js"></script>
+</body>
+</html>
