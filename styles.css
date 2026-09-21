@@ -239,14 +239,13 @@ h1, h2, h3, h4 { font-weight: 400; margin: 0; }
 .pill-underline { position: relative; }
 .pill-underline::after {
   content: ""; position: absolute;
-  left: 10px; right: 10px; bottom: -7px; height: 8px;
+  left: 10px; bottom: -7px; width: 0; height: 8px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='8' viewBox='0 0 20 8'%3E%3Cpath d='M0 4 Q5 0 10 4 T20 4' stroke='%23c4436b' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: repeat-x;
   background-size: 20px 8px;
-  transform: scaleX(0); transform-origin: left;
-  transition: transform .5s ease;
+  transition: width .6s ease;
 }
-.pill-underline:hover::after { transform: scaleX(1); }
+.pill-underline:hover::after { width: calc(100% - 20px); }
 
 /* --- project grid ------------------------------------------------------ */
 
