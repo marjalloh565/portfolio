@@ -85,7 +85,10 @@ h1, h2, h3, h4 { font-weight: 400; margin: 0; }
 
 /* --- shared layout ----------------------------------------------------- */
 
-.page { position: relative; z-index: 2; }
+/* higher than .site-footer's z-index so page content (including anything
+   that hangs below its own row, like the peek photos) can never be cut
+   off by the footer's own stacking context */
+.page { position: relative; z-index: 3; }
 
 .wrap        { max-width: 900px;  margin: 0 auto; padding-left: 30px; padding-right: 30px; }
 .wrap-wide   { max-width: 1000px; margin: 0 auto; padding-left: 30px; padding-right: 30px; }
