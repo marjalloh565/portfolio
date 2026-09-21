@@ -512,6 +512,7 @@ h1, h2, h3, h4 { font-weight: 400; margin: 0; }
 
 .fav-list { display: flex; flex-direction: column; gap: 12px; }
 .fav-item {
+  position: relative;
   display: flex; justify-content: space-between; gap: 20px;
   font-size: 14px;
   border-bottom: 1px solid var(--rule);
@@ -519,7 +520,7 @@ h1, h2, h3, h4 { font-weight: 400; margin: 0; }
 }
 .fav-item__name { font-weight: 600; }
 .fav-item__loc  { color: var(--muted-3); font-style: italic; }
-.fav-item__dish { position: relative; color: var(--muted); text-align: right; flex-shrink: 0; }
+.fav-item__dish { color: var(--muted); text-align: right; flex-shrink: 0; }
 .fav-item__peek {
   /* default: side, for any row that isn't first/last */
   position: absolute; top: 50%; left: 100%;
