@@ -330,39 +330,6 @@
     });
   }
 
-  /* --- custom glass cursor ---------------------------------------------- */
-  function initGlassCursor() {
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-
-    var dot = document.createElement('div');
-    dot.className = 'glass-cursor';
-    document.body.appendChild(dot);
-
-    var x = window.innerWidth / 2, y = window.innerHeight / 2;
-    var cx = x, cy = y;
-    var visible = false;
-
-    document.addEventListener('mousemove', function (e) {
-      x = e.clientX; y = e.clientY;
-      if (!visible) { cx = x; cy = y; visible = true; dot.classList.add('is-visible'); }
-    });
-    document.addEventListener('mouseleave', function () { dot.classList.remove('is-visible'); });
-    document.addEventListener('mousedown', function () { dot.classList.add('is-down'); });
-    document.addEventListener('mouseup', function () { dot.classList.remove('is-down'); });
-
-    document.addEventListener('mouseover', function (e) {
-      var t = e.target.closest && e.target.closest('a, button, [role="button"], input, .fav-item__dish, .book, .project-card');
-      dot.classList.toggle('is-active', !!t);
-    });
-
-    (function tick() {
-      cx += (x - cx) * 0.18;
-      cy += (y - cy) * 0.18;
-      dot.style.transform = 'translate(' + cx + 'px,' + cy + 'px) translate(-50%,-50%)';
-      requestAnimationFrame(tick);
-    })();
-  }
-
   /* --- boot ------------------------------------------------------------ */
   function boot() {
     initClock();
@@ -373,7 +340,6 @@
     initToc();
     initCounters();
     initProjectModal();
-    initGlassCursor();
   }
 
   if (document.readyState === 'loading') {
