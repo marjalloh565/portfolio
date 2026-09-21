@@ -369,6 +369,21 @@
     })();
   }
 
+  /* --- dock nav: shrinks once you scroll past the hero on the home page,
+     and stays shrunk on every other page ---------------------------------- */
+  function initDock() {
+    var dock = document.querySelector('.dock');
+    if (!dock) return;
+    var isHome = !!document.querySelector('.hero');
+    if (!isHome) { dock.classList.add('is-compact'); return; }
+
+    function sync() {
+      dock.classList.toggle('is-compact', window.scrollY > 40);
+    }
+    window.addEventListener('scroll', sync, { passive: true });
+    sync();
+  }
+
   /* --- boot ------------------------------------------------------------ */
   function boot() {
     initClock();
@@ -380,6 +395,7 @@
     initCounters();
     initProjectModal();
     initGlassCursor();
+    initDock();
   }
 
   if (document.readyState === 'loading') {
