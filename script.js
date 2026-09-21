@@ -148,6 +148,17 @@
         }, 700);
       });
     });
+
+    var hint = ama.querySelector('[data-ama-hint]');
+    if (hint) {
+      var activate = function () {
+        hint.innerHTML = 'Want to have a real conversation? Email me at <a href="mailto:mariam.jalloh@utexas.edu">mariam.jalloh@utexas.edu</a>';
+      };
+      hint.addEventListener('click', activate);
+      hint.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
+      });
+    }
   }
 
   /* --- case-study table of contents scrollspy -------------------------- *
