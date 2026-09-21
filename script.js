@@ -235,6 +235,26 @@
     Array.prototype.forEach.call(nodes, function (n) { io.observe(n); });
   }
 
+  /* --- hero corner-spot videos -------------------------------------------
+     Chrome pauses autoplaying <video> that sits at opacity:0 (the spots
+     are invisible until hovered), so `autoplay` alone doesn't keep them
+     playing. Explicitly play/pause on hover instead.
+   * --------------------------------------------------------------------- */
+  function initHeroSpots() {
+    var spots = document.querySelectorAll('.hero-spot');
+    Array.prototype.forEach.call(spots, function (spot) {
+      var video = spot.querySelector('video');
+      if (!video) return;
+      spot.addEventListener('mouseenter', function () {
+        video.currentTime = 0;
+        video.play().catch(function () {});
+      });
+      spot.addEventListener('mouseleave', function () {
+        video.pause();
+      });
+    });
+  }
+
   /* --- project case-study modal -----------------------------------------
      Case-study links (project cards, "Read the case study" links) open
      their target page's .cs content (toc + sections) in an in-page window
@@ -339,6 +359,7 @@
     initAma();
     initToc();
     initCounters();
+    initHeroSpots();
     initProjectModal();
   }
 
