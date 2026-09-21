@@ -232,6 +232,7 @@ h1, h2, h3, h4 { font-weight: 400; margin: 0; }
 .hero-spot:hover .hero-spot__media { opacity: 1; transform: scale(1) rotate(-2deg); }
 .hero-spot__media video,
 .hero-spot__media img { width: 100%; height: 100%; object-fit: cover; }
+.hero-spot--sketch .hero-spot__media img { object-position: center 15%; }
 @media (max-width: 900px) {
   .hero-spot { display: none; }
 }
