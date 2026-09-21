@@ -334,7 +334,10 @@ h1, h2, h3, h4 { font-weight: 400; margin: 0; }
   border: 1px solid #ffffffa0;
   box-shadow: 0 8px 28px rgba(0,0,0,.10), inset 0 1px 0 #ffffffcc, inset 0 -6px 14px #ffffff40;
   pointer-events: auto;
-  transition: gap .25s ease, padding .25s ease, border-radius .25s ease;
+  transform: scale(1);
+  transform-origin: center bottom;
+  transition: transform .25s ease;
+  will-change: transform;
 }
 
 .dock__item {
@@ -345,21 +348,20 @@ h1, h2, h3, h4 { font-weight: 400; margin: 0; }
   width: 56px; height: 56px;
   border-radius: 14px;
   display: flex; align-items: center; justify-content: center;
-  transition: width .25s ease, height .25s ease, border-radius .25s ease, transform .2s ease;
+  transition: transform .2s ease;
 }
 .dock__item:hover .dock__icon { transform: translateY(-3px); }
-.dock__icon img { width: 92px; height: 92px; object-fit: contain; transition: width .25s ease, height .25s ease; }
+.dock__icon img { width: 92px; height: 92px; object-fit: contain; }
 .dock__icon--work   { background: #eaf1ff; }
 .dock__icon--resume { background: #eef7ea; }
 .dock__icon--about  { background: #fdeee0; }
-.dock__label { font-size: 13px; color: var(--muted-2); transition: font-size .25s ease; }
+.dock__label { font-size: 13px; color: var(--muted-2); }
 .dock__item[aria-current="page"] .dock__label { color: var(--ink); font-weight: 600; }
 
-/* shrink once scrolled off the top of the home hero, or on any non-home page */
-.dock.is-compact .dock__bar { gap: 16px; padding: 10px 16px; border-radius: 15px; }
-.dock.is-compact .dock__icon { width: 41px; height: 41px; border-radius: 10px; }
-.dock.is-compact .dock__icon img { width: 68px; height: 68px; }
-.dock.is-compact .dock__label { font-size: 10px; }
+/* shrink once scrolled off the top of the home hero, or on any non-home page —
+   a single transform scale instead of animating width/height/padding keeps
+   this smooth (compositor-only) instead of forcing layout on every scroll frame */
+.dock.is-compact .dock__bar { transform: scale(.74); }
 
 /* --- about page -------------------------------------------------------- */
 
