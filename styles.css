@@ -521,27 +521,18 @@ h1, h2, h3, h4 { font-weight: 400; margin: 0; }
 .fav-item__loc  { color: var(--muted-3); font-style: italic; }
 .fav-item__dish { position: relative; color: var(--muted); text-align: right; flex-shrink: 0; }
 .fav-item__peek {
-  position: absolute; top: 100%; right: 0; margin-top: 10px;
+  position: absolute; top: 50%; left: 100%;
+  margin-left: 16px;
   width: 110px; height: 110px;
   border-radius: 10px; overflow: hidden;
   box-shadow: 0 10px 20px rgba(0,0,0,.18);
   opacity: 0;
-  transform: translateY(-10px) scale(.94);
+  transform: translateY(-50%) translateX(-10px) scale(.94);
   transition: opacity .2s ease, transform .2s ease;
   pointer-events: none;
   z-index: 5;
 }
-/* first row has no room above it (sits right under the city tabs), so its
-   peek opens to the side instead of downward into the row below */
-.fav-list .fav-item:first-child .fav-item__peek {
-  top: 50%; right: auto; left: 100%;
-  margin-top: 0; margin-left: 16px;
-  transform: translateY(-50%) translateX(-10px) scale(.94);
-}
-.fav-item__dish:hover .fav-item__peek { opacity: 1; transform: translateY(0) scale(1); }
-.fav-list .fav-item:first-child .fav-item__dish:hover .fav-item__peek {
-  transform: translateY(-50%) translateX(0) scale(1);
-}
+.fav-item__dish:hover .fav-item__peek { opacity: 1; transform: translateY(-50%) translateX(0) scale(1); }
 .fav-item__peek img { width: 100%; height: 100%; object-fit: cover; }
 
 /* book carousel */
