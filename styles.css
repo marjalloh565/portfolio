@@ -788,6 +788,30 @@ h1, h2, h3, h4 { font-weight: 400; margin: 0; }
 .insight__title { font-size: 20px; font-weight: 700; line-height: 1.2; }
 .insight__note  { font-size: 14px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
 
+/* hover to expand one card and shrink its neighbors, matching the original
+   Claude Design behavior — only on devices that actually have hover, so
+   touch visitors still get the note text without needing a tap-hover */
+@media (hover: hover) and (pointer: fine) {
+  .insight-row { flex-wrap: nowrap; height: 190px; }
+  .insight {
+    min-width: 0; overflow: hidden;
+    cursor: pointer;
+    transition: flex-grow .4s cubic-bezier(.4,0,.2,1);
+  }
+  .insight-row:hover .insight { flex-grow: 1; }
+  .insight-row .insight:hover { flex-grow: 6; }
+  .insight__title { transition: font-size .3s ease; }
+  .insight-row:hover .insight:not(:hover) .insight__title { font-size: 15px; }
+  .insight__note {
+    opacity: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    transition: opacity .1s ease;
+  }
+  .insight:hover .insight__note {
+    opacity: 1; white-space: normal; overflow: visible;
+    transition: opacity .3s ease .1s;
+  }
+}
+
 .card-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
 .num-card {
   flex: 1; min-width: 150px;
