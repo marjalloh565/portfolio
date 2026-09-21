@@ -351,8 +351,8 @@
     document.addEventListener('mouseup', function () { dot.classList.remove('is-down'); });
 
     (function tick() {
-      cx += (x - cx) * 0.18;
-      cy += (y - cy) * 0.18;
+      cx += (x - cx) * 0.4;
+      cy += (y - cy) * 0.4;
       dot.style.transform = 'translate(' + cx + 'px,' + cy + 'px) translate(-50%,-50%)';
       requestAnimationFrame(tick);
     })();
