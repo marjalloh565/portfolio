@@ -521,6 +521,7 @@ h1, h2, h3, h4 { font-weight: 400; margin: 0; }
 .fav-item__loc  { color: var(--muted-3); font-style: italic; }
 .fav-item__dish { position: relative; color: var(--muted); text-align: right; flex-shrink: 0; }
 .fav-item__peek {
+  /* default: side, for any row that isn't first/last */
   position: absolute; top: 50%; left: 100%;
   margin-left: 16px;
   width: 110px; height: 110px;
@@ -534,6 +535,26 @@ h1, h2, h3, h4 { font-weight: 400; margin: 0; }
 }
 .fav-item__dish:hover .fav-item__peek { opacity: 1; transform: translateY(-50%) translateX(0) scale(1); }
 .fav-item__peek img { width: 100%; height: 100%; object-fit: cover; }
+
+/* first row: opens upward */
+.fav-list .fav-item:first-child .fav-item__peek {
+  top: auto; bottom: 100%; left: auto; right: 0;
+  margin-left: 0; margin-bottom: 10px;
+  transform: translateY(10px) scale(.94);
+}
+.fav-list .fav-item:first-child .fav-item__dish:hover .fav-item__peek {
+  transform: translateY(0) scale(1);
+}
+
+/* last row: opens downward */
+.fav-list .fav-item:last-child .fav-item__peek {
+  top: 100%; bottom: auto; left: auto; right: 0;
+  margin-left: 0; margin-top: 10px;
+  transform: translateY(-10px) scale(.94);
+}
+.fav-list .fav-item:last-child .fav-item__dish:hover .fav-item__peek {
+  transform: translateY(0) scale(1);
+}
 
 /* book carousel */
 .shelf { display: flex; align-items: center; gap: 8px; }
