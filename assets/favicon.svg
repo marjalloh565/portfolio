@@ -7,10 +7,10 @@
 }
 text {
   font-family: "Homemade Apple", cursive;
-  font-size: 26px;
+  font-size: 32px;
   fill: #c4436b;
 }
 </style>
 </defs>
-<text x="32" y="36" text-anchor="middle">MJ</text>
+<text x="32" y="40" text-anchor="middle">MJ</text>
 </svg>
