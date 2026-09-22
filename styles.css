@@ -780,39 +780,49 @@ h1, h2, h3, h4 { font-weight: 400; margin: 0; }
 .priority--p1 { background: var(--pale-stone); color: var(--muted); }
 .priority--p2 { background: var(--pale-sand);  color: var(--on-sand); }
 
-.insight-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 10px; }
+.insight-row { display: flex; gap: 16px; flex-wrap: nowrap; height: 190px; margin-top: 10px; }
 .insight {
-  flex: 1; min-width: 200px;
+  flex: 1; min-width: 0; overflow: hidden;
   border-radius: 14px; padding: 16px;
+  cursor: pointer;
+  transition: flex-grow .4s cubic-bezier(.4,0,.2,1);
 }
 .insight:nth-child(1) { background: #eee7dd; }
 .insight:nth-child(2) { background: var(--pale-rose); }
 .insight:nth-child(3) { background: #dde3cf; }
-.insight__title { font-size: 20px; font-weight: 700; line-height: 1.2; }
-.insight__note  { font-size: 14px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+.insight__title { font-size: 20px; font-weight: 700; line-height: 1.2; transition: font-size .3s ease; }
+.insight__note {
+  font-size: 14px; color: var(--muted); margin-top: 6px; line-height: 1.5;
+  opacity: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  transition: opacity .1s ease;
+}
 
-/* hover to expand one card and shrink its neighbors, matching the original
-   Claude Design behavior — only on devices that actually have hover, so
-   touch visitors still get the note text without needing a tap-hover */
+/* expand one card and shrink its neighbors — driven by a JS-toggled
+   .is-expanded/.has-expanded pair (tap to expand, tap again to collapse)
+   on touch devices. Deliberately not just :hover-gated-by-media, since a
+   touch tap can leave a stuck/sticky :hover state on some browsers that
+   would otherwise fight the JS toggle on the next tap. */
+.insight-row.has-expanded .insight { flex-grow: 1; }
+.insight-row.has-expanded .insight.is-expanded { flex-grow: 6; }
+.insight-row.has-expanded .insight:not(.is-expanded) .insight__title { font-size: 15px; }
+.insight.is-expanded .insight__note {
+  opacity: 1; white-space: normal; overflow: visible;
+  transition: opacity .3s ease .1s;
+}
+
+/* same interaction via pure :hover, only on devices with real hover */
 @media (hover: hover) and (pointer: fine) {
-  .insight-row { flex-wrap: nowrap; height: 190px; }
-  .insight {
-    min-width: 0; overflow: hidden;
-    cursor: pointer;
-    transition: flex-grow .4s cubic-bezier(.4,0,.2,1);
-  }
   .insight-row:hover .insight { flex-grow: 1; }
   .insight-row .insight:hover { flex-grow: 6; }
-  .insight__title { transition: font-size .3s ease; }
   .insight-row:hover .insight:not(:hover) .insight__title { font-size: 15px; }
-  .insight__note {
-    opacity: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    transition: opacity .1s ease;
-  }
   .insight:hover .insight__note {
     opacity: 1; white-space: normal; overflow: visible;
     transition: opacity .3s ease .1s;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .insight { transition: none; }
 }
 
 .card-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px; }

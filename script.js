@@ -399,6 +399,24 @@
     });
   }
 
+  /* --- insight-card expand on tap (touch devices only — hover-capable
+     devices use the pure-CSS :hover version instead) -------------------- */
+  function initInsightCards() {
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    var rows = document.querySelectorAll('.insight-row');
+    Array.prototype.forEach.call(rows, function (row) {
+      var cards = row.querySelectorAll('.insight');
+      Array.prototype.forEach.call(cards, function (card) {
+        card.addEventListener('click', function () {
+          var wasExpanded = card.classList.contains('is-expanded');
+          Array.prototype.forEach.call(cards, function (c) { c.classList.remove('is-expanded'); });
+          row.classList.toggle('has-expanded', !wasExpanded);
+          if (!wasExpanded) card.classList.add('is-expanded');
+        });
+      });
+    });
+  }
+
   /* --- custom glass cursor ---------------------------------------------- */
   function initGlassCursor() {
     if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
@@ -454,6 +472,7 @@
     initCounters();
     initProjectModal();
     initGlassCursor();
+    initInsightCards();
     initDock();
   }
 
