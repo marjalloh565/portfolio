@@ -159,7 +159,7 @@ h1, h2, h3, h4 { font-weight: 400; margin: 0; }
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   text-align: center; gap: 14px;
-  padding: 140px 20px 40px;
+  padding: 40px 20px;
   position: relative; z-index: 2;
 }
 
