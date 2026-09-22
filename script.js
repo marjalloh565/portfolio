@@ -58,8 +58,8 @@
       show(isDaytimeAustin() ? 'sun' : 'moon');
     }
 
-    function categoryForCode(code) {
-      if (code === 0 || code === 1) return 'sun';
+    function categoryForCode(code, isDay) {
+      if (code === 0 || code === 1) return isDay ? 'sun' : 'moon';
       if (code === 2 || code === 3 || code === 45 || code === 48) return 'cloud';
       if ((code >= 51 && code <= 67) || (code >= 80 && code <= 82) || (code >= 95 && code <= 99)) return 'rain';
       if ((code >= 71 && code <= 77) || code === 85 || code === 86) return 'snow';
@@ -75,9 +75,11 @@
           return res.json();
         })
         .then(function (data) {
-          var code = data && data.current_weather && data.current_weather.weathercode;
+          var cw = data && data.current_weather;
+          var code = cw && cw.weathercode;
           if (typeof code !== 'number') throw new Error('no weathercode');
-          show(categoryForCode(code));
+          var isDay = cw.is_day !== 0;
+          show(categoryForCode(code, isDay));
         })
         .catch(fallback);
     }
