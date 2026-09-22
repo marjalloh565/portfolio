@@ -435,7 +435,7 @@
       x = e.clientX; y = e.clientY;
       if (!visible) { cx = x; cy = y; visible = true; dot.classList.add('is-visible'); }
     });
-    document.addEventListener('mouseleave', function () { dot.classList.remove('is-visible'); });
+    document.addEventListener('mouseleave', function () { visible = false; dot.classList.remove('is-visible'); });
     document.addEventListener('mousedown', function () { dot.classList.add('is-down'); });
     document.addEventListener('mouseup', function () { dot.classList.remove('is-down'); });
 
