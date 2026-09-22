@@ -115,7 +115,9 @@
           t.setAttribute('aria-selected', on ? 'true' : 'false');
           t.setAttribute('tabindex', on ? '0' : '-1');
           var panel = document.getElementById(t.getAttribute('aria-controls'));
-          if (panel) panel.hidden = !on;
+          if (!panel) return;
+          if (on) panel.removeAttribute('hidden');
+          else panel.setAttribute('hidden', '');
         });
       }
 
