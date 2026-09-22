@@ -90,14 +90,16 @@
     var STEP = 122; // 110px cover + 12px gap
     var index = 0;
 
-    function visibleCount() {
+    function maxOffset() {
       var w = shelf.querySelector('.shelf__window');
-      return Math.max(1, Math.floor((w ? w.clientWidth : 354) / STEP));
+      var winWidth = w ? w.clientWidth : 354;
+      return Math.max(0, track.scrollWidth - winWidth);
     }
+    function maxIndex() { return Math.max(0, Math.round(maxOffset() / STEP)); }
     function render() {
-      track.style.transform = 'translateX(-' + (index * STEP) + 'px)';
+      var offset = Math.min(index * STEP, maxOffset());
+      track.style.transform = 'translateX(-' + offset + 'px)';
     }
-    function maxIndex() { return Math.max(0, books - visibleCount()); }
 
     if (next) next.addEventListener('click', function () {
       index = index >= maxIndex() ? 0 : index + 1;
