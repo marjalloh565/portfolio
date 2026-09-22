@@ -113,17 +113,38 @@
     <div class="footer-clock">
       <svg data-clock-sun width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
         <circle cx="12" cy="12" r="4.5"></circle>
-        <line x1="12" y1="1.5" x2="12" y2="4.5"></line>
-        <line x1="12" y1="19.5" x2="12" y2="22.5"></line>
-        <line x1="1.5" y1="12" x2="4.5" y2="12"></line>
-        <line x1="19.5" y1="12" x2="22.5" y2="12"></line>
-        <line x1="4.5" y1="4.5" x2="6.6" y2="6.6"></line>
-        <line x1="17.4" y1="17.4" x2="19.5" y2="19.5"></line>
-        <line x1="4.5" y1="19.5" x2="6.6" y2="17.4"></line>
-        <line x1="17.4" y1="6.6" x2="19.5" y2="4.5"></line>
+        <g class="wx-sun-rays">
+          <line x1="12" y1="1.5" x2="12" y2="4.5"></line>
+          <line x1="12" y1="19.5" x2="12" y2="22.5"></line>
+          <line x1="1.5" y1="12" x2="4.5" y2="12"></line>
+          <line x1="19.5" y1="12" x2="22.5" y2="12"></line>
+          <line x1="4.5" y1="4.5" x2="6.6" y2="6.6"></line>
+          <line x1="17.4" y1="17.4" x2="19.5" y2="19.5"></line>
+          <line x1="4.5" y1="19.5" x2="6.6" y2="17.4"></line>
+          <line x1="17.4" y1="6.6" x2="19.5" y2="4.5"></line>
+        </g>
       </svg>
       <svg data-clock-moon hidden width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
         <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"></path>
+      </svg>
+      <svg data-weather-cloud hidden width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <path d="M7 18h10.5a3.5 3.5 0 0 0 .5-6.96A5.5 5.5 0 0 0 7.6 9.5 4 4 0 0 0 7 18z"></path>
+      </svg>
+      <svg data-weather-rain hidden width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <path d="M7 14.5h10a3.2 3.2 0 0 0 .4-6.38A5 5 0 0 0 7.55 6 3.6 3.6 0 0 0 7 14.5z"></path>
+        <g class="wx-rain-drops">
+          <line x1="8.5" y1="17" x2="7.5" y2="20.5" class="wx-drop wx-drop-1"></line>
+          <line x1="12.5" y1="17" x2="11.5" y2="20.5" class="wx-drop wx-drop-2"></line>
+          <line x1="16.5" y1="17" x2="15.5" y2="20.5" class="wx-drop wx-drop-3"></line>
+        </g>
+      </svg>
+      <svg data-weather-snow hidden width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <path d="M7 14.5h10a3.2 3.2 0 0 0 .4-6.38A5 5 0 0 0 7.55 6 3.6 3.6 0 0 0 7 14.5z"></path>
+        <g class="wx-snow-dots" fill="currentColor" stroke="none">
+          <circle cx="8.5" cy="18" r="1" class="wx-dot wx-dot-1"></circle>
+          <circle cx="12.5" cy="19.5" r="1" class="wx-dot wx-dot-2"></circle>
+          <circle cx="16" cy="18" r="1" class="wx-dot wx-dot-3"></circle>
+        </g>
       </svg>
       <span data-clock></span>
       <span>Austin, TX</span>

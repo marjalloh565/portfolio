@@ -11,24 +11,78 @@
   function initClock() {
     var out = document.querySelector('[data-clock]');
     if (!out) return;
-    var sun = document.querySelector('[data-clock-sun]');
-    var moon = document.querySelector('[data-clock-moon]');
 
     function tick() {
-      var now = new Date();
-      out.textContent = now.toLocaleTimeString('en-US', {
+      out.textContent = new Date().toLocaleTimeString('en-US', {
         timeZone: 'America/Chicago',
         hour: 'numeric', minute: '2-digit', second: '2-digit'
       });
-      var h = parseInt(now.toLocaleTimeString('en-US', {
-        timeZone: 'America/Chicago', hour: 'numeric', hour12: false
-      }), 10);
-      var isDay = h >= 7 && h < 19;
-      if (sun) sun.hidden = !isDay;
-      if (moon) moon.hidden = isDay;
     }
     tick();
     setInterval(tick, 1000);
+  }
+
+  /* --- footer weather icon -----------------------------------------------
+     Current conditions for Austin, TX from Open-Meteo (no API key). Swaps
+     a small icon next to the clock: sun/cloud/rain/snow by weathercode,
+     falling back to a sun/moon icon by local time of day if the fetch
+     fails (this also supersedes the old always-on sun/moon toggle).
+   * ----------------------------------------------------------------------- */
+  function initWeather() {
+    var icons = {
+      sun: document.querySelector('[data-clock-sun]'),
+      moon: document.querySelector('[data-clock-moon]'),
+      cloud: document.querySelector('[data-weather-cloud]'),
+      rain: document.querySelector('[data-weather-rain]'),
+      snow: document.querySelector('[data-weather-snow]')
+    };
+    if (!icons.sun && !icons.moon && !icons.cloud && !icons.rain && !icons.snow) return;
+
+    function show(name) {
+      Object.keys(icons).forEach(function (key) {
+        var el = icons[key];
+        if (!el) return;
+        if (key === name) el.removeAttribute('hidden');
+        else el.setAttribute('hidden', '');
+      });
+    }
+
+    function isDaytimeAustin() {
+      var h = parseInt(new Date().toLocaleTimeString('en-US', {
+        timeZone: 'America/Chicago', hour: 'numeric', hour12: false
+      }), 10);
+      return h >= 7 && h < 19;
+    }
+
+    function fallback() {
+      show(isDaytimeAustin() ? 'sun' : 'moon');
+    }
+
+    function categoryForCode(code) {
+      if (code === 0 || code === 1) return 'sun';
+      if (code === 2 || code === 3 || code === 45 || code === 48) return 'cloud';
+      if ((code >= 51 && code <= 67) || (code >= 80 && code <= 82) || (code >= 95 && code <= 99)) return 'rain';
+      if ((code >= 71 && code <= 77) || code === 85 || code === 86) return 'snow';
+      return 'cloud';
+    }
+
+    fallback();
+
+    function load() {
+      fetch('https://api.open-meteo.com/v1/forecast?latitude=30.27&longitude=-97.74&current_weather=true')
+        .then(function (res) {
+          if (!res.ok) throw new Error('weather fetch failed');
+          return res.json();
+        })
+        .then(function (data) {
+          var code = data && data.current_weather && data.current_weather.weathercode;
+          if (typeof code !== 'number') throw new Error('no weathercode');
+          show(categoryForCode(code));
+        })
+        .catch(fallback);
+    }
+    load();
+    setInterval(load, 15 * 60 * 1000);
   }
 
   /* --- resume accordion ------------------------------------------------ */
@@ -389,6 +443,7 @@
   /* --- boot ------------------------------------------------------------ */
   function boot() {
     initClock();
+    initWeather();
     initAccordion();
     initTabs();
     initShelf();
