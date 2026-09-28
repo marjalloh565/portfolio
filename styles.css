@@ -1048,6 +1048,7 @@ html.proj-modal-open { overflow: hidden; }
 
 .proj-modal__body {
   flex: 1; overflow-y: auto; padding: 40px 24px 90px;
+  -webkit-overflow-scrolling: touch;
 }
 .proj-modal__body .cs { max-width: 900px; margin: 0 auto; }
 .proj-modal__body .cs-toc { top: 0; }
@@ -1064,11 +1065,13 @@ html.proj-modal-open { overflow: hidden; }
   .proj-modal__body { padding: 24px 20px 60px; }
   .proj-modal__body .cs { flex-direction: column; gap: 0; }
   .proj-modal__body .cs-toc {
-    position: static; display: flex; overflow-x: auto; gap: 16px;
+    position: static; display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 16px;
     width: auto; padding: 0 0 16px; margin-bottom: 16px;
     border-bottom: 1px solid var(--rule);
+    -webkit-overflow-scrolling: touch;
   }
   .proj-modal__body .cs-main { max-width: 100%; }
+  .proj-modal__icon-btn[data-proj-expand] { visibility: hidden; pointer-events: none; }
 }
 
 /* glass cursor */
