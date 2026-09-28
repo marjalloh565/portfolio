@@ -419,6 +419,20 @@
     });
   }
 
+  function initFavPeek() {
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    var dishes = document.querySelectorAll('.fav-item__dish');
+    Array.prototype.forEach.call(dishes, function (dish) {
+      dish.addEventListener('click', function () {
+        var item = dish.closest('.fav-item');
+        var wasPeeking = item.classList.contains('is-peeking');
+        var siblings = item.parentElement.querySelectorAll('.fav-item');
+        Array.prototype.forEach.call(siblings, function (s) { s.classList.remove('is-peeking'); });
+        if (!wasPeeking) item.classList.add('is-peeking');
+      });
+    });
+  }
+
   /* --- custom glass cursor ---------------------------------------------- */
   function initGlassCursor() {
     if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
@@ -475,6 +489,7 @@
     initProjectModal();
     initGlassCursor();
     initInsightCards();
+    initFavPeek();
     initDock();
   }
 
