@@ -612,7 +612,7 @@ h1, h2, h3, h4 { font-weight: 400; margin: 0; }
   color: var(--ink); font-family: inherit;
 }
 .shelf__btn:hover { background: var(--ink); color: var(--cream); }
-.shelf__window { width: 100%; max-width: 354px; overflow: hidden; }
+.shelf__window { flex: 1 1 auto; min-width: 0; max-width: 354px; overflow: hidden; }
 .shelf__track  { display: flex; gap: 12px; transition: transform .3s ease; }
 .book { width: 110px; flex-shrink: 0; }
 .book__cover {
@@ -646,6 +646,7 @@ h1, h2, h3, h4 { font-weight: 400; margin: 0; }
   align-items: flex-start;
 }
 .about-split > * { flex: 1; min-width: 280px; }
+.shelf-col { flex: 0 0 auto; }
 
 /* --- resume page ------------------------------------------------------- */
 
@@ -998,6 +999,7 @@ h1, h2, h3, h4 { font-weight: 400; margin: 0; }
   .compare thead th { font-size: 11px; }
   .compare tbody td:first-child { font-size: 12px; }
   .shot, .shot--wide { width: 100%; }
+  .shelf-col { flex: 1 1 auto; min-width: 0; max-width: 100%; }
   .fav-item:not(:first-child):not(:last-child) .fav-item__peek {
     top: 100%; bottom: auto; left: auto; right: 0;
     margin-left: 0; margin-top: 10px;
