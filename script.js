@@ -173,8 +173,8 @@
     render();
   }
 
-  function initShotCarousels() {
-    var carousels = document.querySelectorAll('[data-carousel]');
+  function initShotCarousels(root) {
+    var carousels = (root || document).querySelectorAll('[data-carousel]');
     Array.prototype.forEach.call(carousels, function (carousel) {
       var win = carousel.querySelector('.shot-carousel__window');
       var track = carousel.querySelector('.shot-carousel__track');
@@ -434,6 +434,7 @@
         initToc(bodyEl, bodyEl);
         initTabs(bodyEl);
         initCounters(bodyEl);
+        initShotCarousels(bodyEl);
       }).catch(function () {
         if (token !== openToken) return;
         bodyEl.innerHTML = '<div class="proj-modal__loading">Couldn’t load this case study. <a href="' + url + '">Open it directly →</a></div>';
