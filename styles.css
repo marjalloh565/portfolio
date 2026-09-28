@@ -916,10 +916,18 @@ h1, h2, h3, h4 { font-weight: 400; margin: 0; }
   font-size: 13px; cursor: pointer; color: var(--ink); font-family: inherit;
 }
 .shot-carousel__nav:hover { background: var(--ink); color: var(--cream); }
-.shot-carousel__window { flex: 1 1 auto; min-width: 0; overflow: hidden; }
-.shot-carousel__track { display: flex; transition: transform .35s ease; }
+.shot-carousel__window {
+  flex: 1 1 auto; min-width: 0;
+  overflow-x: auto; overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.shot-carousel__window::-webkit-scrollbar { display: none; }
+.shot-carousel__track { display: flex; }
 .shot-carousel__slide {
   flex: 0 0 100%; min-width: 0;
+  scroll-snap-align: center; scroll-snap-stop: always;
   display: flex; flex-direction: column; align-items: center; gap: 6px;
 }
 .shot-carousel__frame {

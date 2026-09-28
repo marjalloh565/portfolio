@@ -176,37 +176,48 @@
   function initShotCarousels() {
     var carousels = document.querySelectorAll('[data-carousel]');
     Array.prototype.forEach.call(carousels, function (carousel) {
+      var win = carousel.querySelector('.shot-carousel__window');
       var track = carousel.querySelector('.shot-carousel__track');
       var slides = track ? track.children : [];
       var prev = carousel.querySelector('[data-carousel-prev]');
       var next = carousel.querySelector('[data-carousel-next]');
       var dots = carousel.querySelectorAll('[data-carousel-dot]');
       var count = slides.length;
-      if (!track || !count) return;
+      if (!win || !count) return;
 
       var index = 0;
 
-      function render() {
-        var winWidth = carousel.querySelector('.shot-carousel__window').clientWidth;
-        track.style.transform = 'translateX(-' + (index * winWidth) + 'px)';
+      function updateDots() {
         Array.prototype.forEach.call(dots, function (dot, i) {
           dot.classList.toggle('is-active', i === index);
         });
       }
+      function goTo(i, smooth) {
+        index = Math.max(0, Math.min(count - 1, i));
+        win.scrollTo({ left: index * win.clientWidth, behavior: smooth === false ? 'auto' : 'smooth' });
+        updateDots();
+      }
 
       if (next) next.addEventListener('click', function () {
-        index = index >= count - 1 ? 0 : index + 1;
-        render();
+        goTo(index >= count - 1 ? 0 : index + 1);
       });
       if (prev) prev.addEventListener('click', function () {
-        index = index <= 0 ? count - 1 : index - 1;
-        render();
+        goTo(index <= 0 ? count - 1 : index - 1);
       });
       Array.prototype.forEach.call(dots, function (dot, i) {
-        dot.addEventListener('click', function () { index = i; render(); });
+        dot.addEventListener('click', function () { goTo(i); });
       });
-      window.addEventListener('resize', render);
-      render();
+
+      var scrollTimer;
+      win.addEventListener('scroll', function () {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function () {
+          index = Math.round(win.scrollLeft / win.clientWidth);
+          updateDots();
+        }, 100);
+      }, { passive: true });
+
+      window.addEventListener('resize', function () { goTo(index, false); });
     });
   }
 
