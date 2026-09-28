@@ -906,6 +906,36 @@ h1, h2, h3, h4 { font-weight: 400; margin: 0; }
 .shot__frame--crop { height: 200px; }
 .shot__frame--crop img { height: 100%; object-fit: cover; object-position: top; }
 
+/* centered single-slide carousel (case study spec sequences) */
+.shot-carousel { margin-top: 10px; max-width: 420px; }
+.shot-carousel__stage { display: flex; align-items: center; gap: 12px; }
+.shot-carousel__nav {
+  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+  border: 1px solid var(--ink); background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; cursor: pointer; color: var(--ink); font-family: inherit;
+}
+.shot-carousel__nav:hover { background: var(--ink); color: var(--cream); }
+.shot-carousel__window { flex: 1 1 auto; min-width: 0; overflow: hidden; }
+.shot-carousel__track { display: flex; transition: transform .35s ease; }
+.shot-carousel__slide {
+  flex: 0 0 100%; min-width: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.shot-carousel__frame {
+  width: 100%; max-width: 340px;
+  border-radius: var(--radius-s); border: 1px solid var(--rule);
+  overflow: hidden; background: #fff;
+}
+.shot-carousel__frame img { width: 100%; display: block; }
+.shot-carousel__dots { display: flex; gap: 6px; justify-content: center; margin-top: 12px; }
+.shot-carousel__dot {
+  width: 6px; height: 6px; border-radius: 999px; padding: 0;
+  border: none; background: #d8cfc2; cursor: pointer;
+  transition: width .2s ease, background .2s ease;
+}
+.shot-carousel__dot.is-active { width: 16px; background: var(--accent); }
+
 .figure { margin: 6px 0 0; }
 .figure img { width: 100%; border-radius: 12px; border: 1px solid var(--rule); display: block; }
 .figure figcaption { font-size: 12px; color: var(--muted-4); margin-top: 6px; }

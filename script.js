@@ -173,6 +173,43 @@
     render();
   }
 
+  function initShotCarousels() {
+    var carousels = document.querySelectorAll('[data-carousel]');
+    Array.prototype.forEach.call(carousels, function (carousel) {
+      var track = carousel.querySelector('.shot-carousel__track');
+      var slides = track ? track.children : [];
+      var prev = carousel.querySelector('[data-carousel-prev]');
+      var next = carousel.querySelector('[data-carousel-next]');
+      var dots = carousel.querySelectorAll('[data-carousel-dot]');
+      var count = slides.length;
+      if (!track || !count) return;
+
+      var index = 0;
+
+      function render() {
+        var winWidth = carousel.querySelector('.shot-carousel__window').clientWidth;
+        track.style.transform = 'translateX(-' + (index * winWidth) + 'px)';
+        Array.prototype.forEach.call(dots, function (dot, i) {
+          dot.classList.toggle('is-active', i === index);
+        });
+      }
+
+      if (next) next.addEventListener('click', function () {
+        index = index >= count - 1 ? 0 : index + 1;
+        render();
+      });
+      if (prev) prev.addEventListener('click', function () {
+        index = index <= 0 ? count - 1 : index - 1;
+        render();
+      });
+      Array.prototype.forEach.call(dots, function (dot, i) {
+        dot.addEventListener('click', function () { index = i; render(); });
+      });
+      window.addEventListener('resize', render);
+      render();
+    });
+  }
+
   /* --- ask-me-anything ------------------------------------------------- */
   function initAma() {
     var ama = document.querySelector('[data-ama]');
@@ -483,6 +520,7 @@
     initAccordion();
     initTabs();
     initShelf();
+    initShotCarousels();
     initAma();
     initToc();
     initCounters();
