@@ -907,7 +907,7 @@ h1, h2, h3, h4 { font-weight: 400; margin: 0; }
 .shot__frame--crop img { height: 100%; object-fit: cover; object-position: top; }
 
 /* centered single-slide carousel (case study spec sequences) */
-.shot-carousel { margin-top: 10px; max-width: 420px; }
+.shot-carousel { margin: 10px auto 0; max-width: 420px; }
 .shot-carousel__stage { display: flex; align-items: center; gap: 12px; }
 .shot-carousel__nav {
   width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
