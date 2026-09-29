@@ -40,7 +40,7 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; overflow-x: hidden; }
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -121,6 +121,10 @@ h1, h2, h3, h4 { font-weight: 400; margin: 0; }
   font-size: 13px; color: var(--muted-3);
   text-decoration: none;
   margin: 8px 0 32px;
+  position: sticky; top: 16px; z-index: 10;
+  background: var(--cream);
+  padding: 6px 10px 6px 0;
+  border-radius: 999px;
 }
 .back-link:hover { color: var(--accent); }
 
