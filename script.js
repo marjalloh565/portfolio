@@ -367,6 +367,7 @@
     var modal, windowEl, bodyEl, labelEl;
     var lastFocus = null;
     var openToken = 0;
+    var currentUrl = null;
 
     function build() {
       if (modal) return;
@@ -378,7 +379,7 @@
           '<div class="proj-modal__header">' +
             '<button type="button" class="proj-modal__icon-btn" data-proj-close aria-label="Close">⌂</button>' +
             '<div class="proj-modal__label"></div>' +
-            '<button type="button" class="proj-modal__icon-btn" data-proj-expand aria-label="Expand">⤢</button>' +
+            '<button type="button" class="proj-modal__icon-btn" data-proj-expand aria-label="Open full page">⤢</button>' +
           '</div>' +
           '<div class="proj-modal__body"></div>' +
         '</div>';
@@ -392,7 +393,7 @@
       });
       modal.querySelector('[data-proj-close]').addEventListener('click', close);
       modal.querySelector('[data-proj-expand]').addEventListener('click', function () {
-        windowEl.classList.toggle('is-expanded');
+        if (currentUrl) window.location.href = currentUrl;
       });
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && modal && !modal.hidden) close();
@@ -403,7 +404,6 @@
       if (!modal || modal.hidden) return;
       modal.hidden = true;
       document.documentElement.classList.remove('proj-modal-open');
-      windowEl.classList.remove('is-expanded');
       if (lastFocus && lastFocus.focus) lastFocus.focus();
     }
 
@@ -411,6 +411,7 @@
       build();
       var token = ++openToken;
       lastFocus = triggerEl || null;
+      currentUrl = url;
       modal.hidden = false;
       document.documentElement.classList.add('proj-modal-open');
       bodyEl.innerHTML = '<div class="proj-modal__loading">Loading…</div>';
